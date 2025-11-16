@@ -1,0 +1,35 @@
+{% extends "layout.html" %}
+{% block title %}Register - TweetHQ{% endblock %}
+
+{% block content %}
+
+<div class="container d-flex justify-content-center align-items-center" style="min-height: 80vh;">
+    <div class="card shadow p-4" style="width: 420px;">
+
+        <h2 class="text-center mb-4">📝 Create Account</h2>
+
+        <form method="POST">
+            {% csrf_token %}
+
+            {% for field in form %}
+                <div class="mb-3">
+                    <label class="form-label">{{ field.label }}</label>
+                    {{ field }}
+                    
+                    {% if field.errors %}
+                        <div class="text-danger small">{{ field.errors }}</div>
+                    {% endif %}
+                </div>
+            {% endfor %}
+
+            <button class="btn btn-primary w-100">Register</button>
+        </form>
+
+        <p class="text-center mt-3">
+            Already have an account?
+            <a href="{% url 'login' %}" class="text-decoration-none">Login here</a>
+        </p>
+    </div>
+</div>
+
+{% endblock %}
