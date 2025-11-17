@@ -60,7 +60,7 @@ def register(request):
     # VERY IMPORTANT: return render must ALWAYS run
     return render(request, 'registration/register.html', {'form': form})
 
-        
+@login_required 
 def tweet_list(request):
     query = request.GET.get("q", "")   # get what user typed, empty if none
 
