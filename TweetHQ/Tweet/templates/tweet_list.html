@@ -24,3 +24,18 @@
 </div>
 
 {% endblock %}
+
+{% if query %}
+    <p class="text-info">Showing results for: <strong>{{ query }}</strong></p>
+{% endif %}
+
+{% for tweet in tweets %}
+    <div class="card my-3">
+        <div class="card-body">
+            <p>{{ tweet.content }}</p>
+            <small class="text-muted">{{ tweet.created_at }}</small>
+        </div>
+    </div>
+{% empty %}
+    <p>No tweets found.</p>
+{% endfor %}

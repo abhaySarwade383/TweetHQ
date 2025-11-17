@@ -60,6 +60,21 @@ def register(request):
     # VERY IMPORTANT: return render must ALWAYS run
     return render(request, 'registration/register.html', {'form': form})
 
+        
+def tweet_list(request):
+    query = request.GET.get("q", "")   # get what user typed, empty if none
+
+    # Start with all tweets
+    tweets = Tweet.objects.all().order_by('-created_at')
+
+    # If search keyword exists, filter
+    if query:
+        tweets = tweets.filter(text__icontains=query)
+
+    return render(request, 'tweet_list.html', {
+        'tweets': tweets,
+        'query': query
+    })
 
 
 
